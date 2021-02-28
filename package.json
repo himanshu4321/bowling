@@ -1,0 +1,25 @@
+{
+  "name": "bowling",
+  "version": "1.0.0",
+  "description": "bowling game system",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "bowling"
+  },
+  "keywords": [
+    "bowling"
+  ],
+  "author": "Himanshu Singh",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.17"
+  }
+}
