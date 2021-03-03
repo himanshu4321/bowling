@@ -1,5 +1,5 @@
 # Super Bowling game by Himanshu
-A bowling game written for Node.js in Javascrip.
+A bowling game written for Node.js in Javascript.
 
 Todo:
  Add one extra "frame" at the end which summarizes the whole game
