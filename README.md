@@ -1,4 +1,4 @@
-# bowling
+# Super Bowling game by Himanshu
 A bowling game written for Node.js in Javascrip.
 
 Todo:
