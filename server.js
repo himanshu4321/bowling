@@ -6,16 +6,16 @@ global.port         = (process.env.PORT || '3030');
 
 /*Creating the APP*/
 var app = express();
-
-
 app.use(compression());
 app.set('port', port);
 /*Configuring the APP - Start*/
 var config = require('./server/config/config')[env];
 require('./server/config/mongoose')(config);
+global.db = require('./server/config/sequalize');
 require('./server/config/express')(app,config);
 require('./server/routes/game.route')(app);
 require('./server/routes/player.route')(app);
+require('./server/routes/team.route')(app);
 // require('./server/routes/authentication.routes.js')(app);
 console.log('Bowling server running in port =' + port);
 
