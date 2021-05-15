@@ -26,8 +26,16 @@ sequelize
 
   const db = {};
 
-  db.Sequelize = Sequelize;
-  db.sequelize = sequelize;
-  db.user = require("../../server/models/tbl_user")(sequelize, Sequelize);
+  db.Sequelize    = Sequelize;
+  db.sequelize    = sequelize;
+  db.user         = require("../../server/models/tbl_user")(sequelize, Sequelize);
+  db.group        = require("../../server/models/tbl_group")(sequelize, Sequelize);
+  db.groupMap     = require("../models/tbl_group_user_map")(sequelize, Sequelize);
+  db.groupBalance = require("../models/tbl_group_balance")(sequelize, Sequelize);
+  db.quiz         = require("../models/tbl_quiz")(sequelize, Sequelize);
+  db.question     = require("../models/tbl_question")(sequelize, Sequelize);
+  db.questionMap  = require("../models/tbl_question_map_quiz")(sequelize, Sequelize);
+
+
 
   module.exports = db;

@@ -16,6 +16,12 @@ require('./server/config/express')(app,config);
 require('./server/routes/game.route')(app);
 require('./server/routes/player.route')(app);
 require('./server/routes/team.route')(app);
+require('./server/routes/user.route')(app);
+require('./server/routes/group.route')(app);
+require('./server/routes/account.route')(app);
+require('./server/routes/quiz.route')(app);
+require('./server/routes/question.route')(app);
+
 // require('./server/routes/authentication.routes.js')(app);
 console.log('Bowling server running in port =' + port);
 

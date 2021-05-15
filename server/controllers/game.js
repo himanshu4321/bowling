@@ -4,10 +4,75 @@ const dotenv 									    = require('dotenv');
 const locationService                               = require('../services/location.service');
 const DriverLocation                                = require("../models/DriverLocation");
 const user                                          = require("../models/tbl_user");
+const exec                                          = require("child_process").exec;
 const userService                                   = require("../services/user.service");
 dotenv.config();
 
+exports.start = async (req, res)=> {
+    try{
+        let browser =   req.query.browser;
+        let url = req.query.url;
+        if(browser=="firefox"){
+            var command = "XAUTHORITY=/root/.Xauthority sudo firefox "+url;
+        }else{
+            var command  = "google-chrome "+url;
+        }
+        exec(command, function(err,result) {
+            if(err){ //process error
+                return res.send(getFailureResponse("ETU_0001",err));
+            }
+            else{ console.log("success open");
+                return res.send(getSuccessResponse(result));
+            }
+            })
+    }catch(err){
+        return res.send(getFailureResponse("ETU_0001",err.message));  
+    }
+}
 
+exports.stop = async (req, res)=> {
+    try{
+        let browser =   req.query.browser;
+        let url = req.query.url;
+        if(browser=="firefox"){
+            var command = "pkill firefox";
+        }else{
+            var command  = "pkill chrome";
+        }
+        exec(command, function(err,result) {
+            if(err){ //process error
+                return res.send(getFailureResponse("ETU_0001",err));
+            }
+            else{ console.log("success open");
+                return res.send(getSuccessResponse(result));
+            }
+            })
+    }catch(err){
+        return res.send(getFailureResponse("ETU_0001",err.message));  
+    }
+}
+
+exports.cleanup = async (req, res)=> {
+    try{
+        let browser =   req.query.browser;
+        let url = req.query.url;
+        if(browser=="firefox"){
+            var command = "rm -rf ~/.cache/mozilla/firefox/*  rm -rf ~/.mozilla/firefox/* ";
+        }else{
+            var command  = "rm -rf ~/.config/google-chrome/Default";
+        }
+        exec(command, function(err,result) {
+            if(err){ //process error
+                return res.send(getFailureResponse("ETU_0001",err));
+            }
+            else{ console.log("success open");
+                return res.send(getSuccessResponse(result));
+            }
+            })
+    }catch(err){
+        return res.send(getFailureResponse("ETU_0001",err.message));  
+    }
+}
 exports.user = async (req, res)=> {
     try{
         if(!req.body){
@@ -19,6 +84,7 @@ exports.user = async (req, res)=> {
         return res.send(getFailureResponse("ETU_0001",err.message));  
     }
 }
+
 exports.create = async (req, res) => {
 	if(!req.body.name){
         return res.send(getFailureResponse('ETU_0001', "Game name is missing"));

@@ -1,5 +1,6 @@
 //my name is himanshu
 //himanshu is name my
+"use strict"
 var str = "my name is himanshu";
 reverseString();
 function reverseString(){
@@ -22,3 +23,18 @@ function reverseString(){
     }
     console.log(str);
 }
+
+
+function outer(){
+    var b=10;
+    function inner(){
+        var a=20;
+        console.log(a+b);
+    }
+    return inner;
+}
+
+var x=outer();
+var y=outer();
+x();
+x();
